@@ -1,22 +1,32 @@
-<div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
-    <div class="text-center max-w-sm">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
-        <p class="text-lg text-gray-600 mb-8">Social Bingo</p>
+<div class="retro-screen flex flex-col items-center justify-center min-h-full p-6">
+    <div class="text-center max-w-sm w-full">
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-            <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
-            <ul class="text-left text-gray-600 text-sm space-y-2">
-                <li>• Find people who match the questions</li>
-                <li>• Tap a square when you find a match</li>
-                <li>• Get 5 in a row to win!</li>
+        <div class="mb-8 retro-stagger-1">
+            <h1 class="font-pixel text-glow mb-4" style="font-size: 1.4rem">SOC OPS</h1>
+            <p class="font-terminal text-glow-dim text-lg">// SOCIAL BINGO v1.0 //</p>
+        </div>
+
+        <div class="card-retro mb-8 text-left retro-stagger-2">
+            <p class="font-terminal text-glow mb-3" style="font-size: 1.1rem">[ HOW TO PLAY ]</p>
+            <hr class="retro-divider" />
+            <ul class="font-terminal text-glow-dim space-y-2" style="font-size: 1.1rem">
+                <li>&gt; Find people who match the prompts</li>
+                <li>&gt; Tap a square when you find a match</li>
+                <li>&gt; Get 5 in a row to WIN!</li>
             </ul>
         </div>
 
         <button
             @onclick="OnStart"
-            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors">
-            Start Game
+            class="btn-retro w-full py-4 px-8 retro-stagger-3"
+            style="font-size: 1.3rem">
+            [ START GAME ]
         </button>
+
+        <p class="font-terminal text-retro-dim mt-6 retro-stagger-4" style="font-size: 0.9rem">
+            INSERT COIN TO CONTINUE
+            <span class="blink">_</span>
+        </p>
     </div>
 </div>
 

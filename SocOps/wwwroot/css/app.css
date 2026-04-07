@@ -1,3 +1,18 @@
+:root {
+    --color-bg:             #0a0f07;
+    --color-surface:        #0d1a0a;
+    --color-border:         #1d4a1a;
+    --color-glow:           #39ff14;
+    --color-text:           #b8ffb8;
+    --color-text-dim:       #5a9a5a;
+    --color-text-bright:    #e8ffe8;
+    --color-marked-bg:      #0a2a06;
+    --color-marked-border:  #39ff14;
+    --color-win-bg:         #1a1000;
+    --color-win-border:     #ffc107;
+    --color-win-glow:       #ffc107;
+}
+
 html,
 body,
 #app {
@@ -6,8 +21,26 @@ body,
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'VT323', monospace;
     -webkit-tap-highlight-color: transparent;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+/* CRT scanline overlay */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 0, 0, 0.1) 3px,
+        rgba(0, 0, 0, 0.1) 4px
+    );
+    z-index: 9998;
 }
 
 /* Tailwind-like utility classes */
@@ -226,3 +259,183 @@ button:disabled {
     .loading-progress-text:after {
         content: var(--blazor-load-percentage-text, "Loading");
     }
+
+/* ===== RETRO CRT THEME ===== */
+
+/* Layout */
+.retro-screen {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100%;
+}
+
+.retro-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 1px 0 rgba(57, 255, 20, 0.1);
+}
+
+.retro-overlay {
+    background-color: rgba(0, 0, 0, 0.88);
+}
+
+.retro-banner {
+    background-color: var(--color-win-bg);
+    color: var(--color-win-glow);
+    border-top: 1px solid var(--color-win-border);
+    border-bottom: 1px solid var(--color-win-border);
+    text-shadow: 0 0 8px var(--color-win-glow), 0 0 20px rgba(255, 193, 7, 0.5);
+    letter-spacing: 0.08em;
+}
+
+/* Typography */
+.font-terminal {
+    font-family: 'VT323', monospace;
+    letter-spacing: 0.03em;
+}
+
+.font-pixel {
+    font-family: 'Press Start 2P', monospace;
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+}
+
+.text-glow {
+    color: var(--color-glow);
+    text-shadow: 0 0 8px var(--color-glow), 0 0 24px rgba(57, 255, 20, 0.4);
+}
+
+.text-glow-dim {
+    color: var(--color-text);
+    text-shadow: 0 0 4px var(--color-text-dim);
+}
+
+.text-glow-amber {
+    color: var(--color-win-glow);
+    text-shadow: 0 0 8px var(--color-win-glow), 0 0 24px rgba(255, 193, 7, 0.5);
+}
+
+.text-retro-dim {
+    color: var(--color-text-dim);
+}
+
+/* Cards & Panels */
+.card-retro {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.08), inset 0 0 12px rgba(57, 255, 20, 0.03);
+    padding: 1.25rem;
+}
+
+/* Buttons */
+.btn-retro {
+    display: block;
+    background-color: transparent;
+    color: var(--color-glow);
+    border: 1px solid var(--color-glow);
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 6px var(--color-glow);
+    box-shadow: 0 0 8px rgba(57, 255, 20, 0.2), inset 0 0 8px rgba(57, 255, 20, 0.04);
+    cursor: pointer;
+    transition: all 0.1s;
+    text-align: center;
+}
+
+.btn-retro:hover {
+    background-color: rgba(57, 255, 20, 0.07);
+    box-shadow: 0 0 16px rgba(57, 255, 20, 0.35), inset 0 0 12px rgba(57, 255, 20, 0.08);
+}
+
+.btn-retro:active {
+    background-color: rgba(57, 255, 20, 0.14);
+    box-shadow: 0 0 22px rgba(57, 255, 20, 0.5), inset 0 0 8px rgba(57, 255, 20, 0.15);
+    transform: scale(0.98);
+}
+
+/* Bingo Squares */
+.square-default {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    font-family: 'VT323', monospace;
+}
+
+.square-default:active {
+    background-color: rgba(57, 255, 20, 0.05);
+    border-color: var(--color-text-dim);
+}
+
+.square-marked {
+    background-color: var(--color-marked-bg);
+    color: var(--color-glow);
+    border: 1px solid var(--color-marked-border);
+    text-shadow: 0 0 5px var(--color-glow);
+    box-shadow: 0 0 6px rgba(57, 255, 20, 0.25), inset 0 0 6px rgba(57, 255, 20, 0.08);
+    font-family: 'VT323', monospace;
+}
+
+.square-winning {
+    background-color: var(--color-win-bg);
+    color: var(--color-win-glow);
+    border: 1px solid var(--color-win-border);
+    text-shadow: 0 0 6px var(--color-win-glow), 0 0 14px rgba(255, 193, 7, 0.5);
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.35), inset 0 0 8px rgba(255, 193, 7, 0.08);
+    font-family: 'VT323', monospace;
+}
+
+.square-free {
+    background-color: rgba(57, 255, 20, 0.06);
+    color: var(--color-glow);
+    border: 1px solid var(--color-border);
+    text-shadow: 0 0 5px var(--color-glow);
+    font-family: 'VT323', monospace;
+}
+
+/* Retro divider */
+.retro-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 1px 0 rgba(57, 255, 20, 0.06);
+    margin: 0.75rem 0;
+}
+
+/* Animations */
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.blink {
+    animation: blink 0.9s step-end infinite;
+}
+
+@keyframes crt-slide-up {
+    from { transform: translateY(16px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+.retro-modal-anim {
+    animation: crt-slide-up 0.18s ease-out;
+}
+
+@keyframes crt-fade-in {
+    from { opacity: 0; transform: scale(0.98); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.retro-fade-in {
+    animation: crt-fade-in 0.3s ease-out;
+}
+
+/* Staggered entry for start screen */
+.retro-stagger-1 { animation: crt-fade-in 0.3s ease-out 0.05s both; }
+.retro-stagger-2 { animation: crt-fade-in 0.3s ease-out 0.15s both; }
+.retro-stagger-3 { animation: crt-fade-in 0.3s ease-out 0.25s both; }
+.retro-stagger-4 { animation: crt-fade-in 0.3s ease-out 0.4s both; }
+
+/* Loading progress retro style */
+.loading-progress circle:last-child {
+    stroke: var(--color-glow);
+}
